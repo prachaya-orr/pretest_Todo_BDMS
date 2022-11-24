@@ -103,21 +103,6 @@ exports.updateTodoById = async (req, res, next) => {
   }
 };
 
-exports.deleteTodoById = exports.deleteTodo = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-
-    const oldTodos = await readTodo();
-    const newTodos = oldTodos.filter((item) => item.id !== id);
-
-    await writeTodo(newTodos);
-
-    res.status(200).json({ message: 'success delete' });
-  } catch (err) {
-    next(err);
-  }
-};
-
 exports.deleteTodoById = async (req, res, next) => {
   try {
     const { id } = req.params;
